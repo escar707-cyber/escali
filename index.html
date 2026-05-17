@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+<title>ESCALIER | Royal Korean Chic</title>
+<style>
+/* Force full height from first paint — before any CSS loads */
+html, body {
+    height: 100%;
+    min-height: 100%;
+    min-height: -webkit-fill-available;
+    overflow: hidden;
+}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=EB+Garamond:wght@400;500&family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header id="siteHeader" class="site-header theme-dark">
+    <div class="header-inner">
+        <div class="header-left">
+            <a href="#home" id="headerBrand" class="header-brand" aria-label="Escalier Home">
+                <img id="headerLogo" src="assets/escalier-header-mono.png" alt="" class="logo-image" style="filter:brightness(0)invert(1)!important;">
+                <span id="headerWordmark" class="brand-text" style="color:#ffffff!important;">ESCALIER</span>
+            </a>
+        </div>
+        <div class="header-right" id="headerRight" style="color:#ffffff!important;">
+            <button class="icon-btn" aria-label="Search" style="color:#ffffff!important;"><i class="fas fa-search" style="color:#ffffff!important;"></i></button>
+            <button class="icon-btn" id="cartIconBtn" aria-label="Bag" style="color:#ffffff!important;">
+                <i class="fas fa-shopping-bag" style="color:#ffffff!important;"></i>
+                <span id="cartCount" class="cart-count"></span>
+            </button>
+            <button class="icon-btn" id="homeBtn" aria-label="Home" style="color:#ffffff!important;"><i class="fas fa-home" style="color:#ffffff!important;"></i></button>
+            <button id="menuToggle" class="menu-toggle" aria-label="Open menu" style="color:#ffffff!important;">
+                <span style="background:#ffffff!important;"></span>
+                <span style="background:#ffffff!important;"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- DNA section X button: fixed position, replaces hamburger -->
+<button class="dna-x-btn" id="dnaXBtn" aria-label="Back to One Identity">X</button>
+
+<!-- ===== FULL MENU OVERLAY ===== -->
+<div id="fullMenu" class="full-menu">
+    <!-- Sticky Header Area: header + gender tabs -->
+    <div class="fm-sticky-area">
+        <div class="fm-top-header">
+            <div class="header-left">
+                <a href="#home" class="header-brand" id="fmHeaderBrand" onclick="closeFullMenu();return false;">
+                    <img src="assets/escalier-header-mono.png" alt="ESCALIER" class="logo-image" style="filter:brightness(0) invert(1)">
+                    <span class="brand-text" style="color:#ffffff">ESCALIER</span>
+                </a>
+            </div>
+            <div class="header-right">
+                <button class="icon-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                <button class="icon-btn" aria-label="Account"><i class="far fa-user"></i></button>
+                <button class="icon-btn" id="fmCartIconBtn" aria-label="Bag"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="fmCartCount"></span></button>
+                <div class="language-switcher" id="fmLanguageSwitcher">
+                    <button class="language-toggle" id="fmLanguageToggle" aria-label="Change Language">
+                        <img src="assets/flag_id.svg" alt="ID" class="flag-icon" id="fmCurrentFlag">
+                    </button>
+                    <div class="language-dropdown" id="fmLanguageDropdown">
+                        <button class="language-option" data-lang="en"><img src="assets/flag_us.svg" alt="EN" class="flag-icon"> English</button>
+                        <button class="language-option" data-lang="id"><img src="assets/flag_id.svg" alt="ID" class="flag-icon"> Bahasa Indonesia</button>
+                        <button class="language-option" data-lang="ko"><img src="assets/flag_kr.svg" alt="KR" class="flag-icon"> Korean</button>
+                    </div>
+                </div>
+                <button class="icon-btn" id="fmHomeBtn" aria-label="Home"><i class="fas fa-home"></i></button>
+            </div>
+        </div>
+        <div class="fm-gender-row">
+            <button class="fm-gender-tab active" data-gender="women">WOMEN</button>
+            <button class="fm-gender-tab" data-gender="men">MEN</button>
+        </div>
+    </div>
+
+    <!-- Scrollable Content Area -->
+    <div class="fm-scroll-area">
+        <div class="fm-featured-display">
+            <div class="fm-featured-scroll" id="fmFeaturedScroll"></div>
+        </div>
+        <div class="fm-menu-body" id="fmMenuBody"></div>
+    </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section id="home" class="hero" data-header-theme="dark">
+    <div class="hero-content">
+        <p class="hero-kicker">Royal Korean Chic</p>
+        <h1 class="hero-title">ESCALIER</h1>
+        <p class="hero-tagline">
+            <span class="tagline-line1">Minimalist Fashion with</span>
+            <span class="tagline-line2">Contemporary Sophistication</span>
+        </p>
+        <p class="korean-phrase">한국식 미니멀리즘</p>
+        <div class="hero-buttons">
+            <button id="heroExploreBtn" class="hero-btn hero-btn-primary">Explore Our World</button>
+            <button class="hero-btn hero-btn-secondary" id="heroVisitBtn">Visit Store</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== NEW ITEM ANIMATION OVERLAY (WN1-WN3) ===== -->
+<div id="newItemAnimation" class="ni-animation-overlay" style="display:none">
+    <div class="ni-anim-slideshow" id="niAnimSlideshow">
+        <!-- Dynamic slides inserted by JS -->
+    </div>
+    <div class="ni-anim-caption">New In</div>
+</div>
+
+<!-- ===== COLLECTION AUTO-SCROLL (WC1-WC3) ===== -->
+<div id="collectionAutoScroll" class="collection-auto-overlay" style="display:none">
+    <div class="cas-scroll-container" id="casScrollContainer">
+        <!-- Dynamic slides inserted by JS -->
+    </div>
+    <div class="cas-caption" id="casCaption"></div>
+</div>
+
+<!-- ===== NEW ITEMS GRID SECTION ===== -->
+<!-- ===== NEW ITEMS GRID ===== -->
+<section id="newItemsGridSection" class="catalog-section" style="display:none">
+    <!-- Row 1: Back + Title (center) + Actions -->
+    <div class="cat-row1" id="nigRow1">
+        <button class="cat-back" id="nigBack"><svg width="7" height="12" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,1 1,6 7,11"/></svg></button>
+        <h2 class="cat-title" id="nigTitle">NEW IN</h2>
+        <div class="cat-row1-right">
+            <button class="cat-filter-btn" id="nigFiltersToggle">FILTER</button>
+            <button class="cat-view-toggle" id="nigViewToggle" data-view="vg1" aria-label="Toggle grid view">
+                <svg class="vg-icon vg1-icon active" viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="3" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg class="vg-icon vg2-icon" viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="3" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg class="vg-icon vg3-icon" viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="3" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="9" y1="3" x2="9" y2="21" stroke="currentColor" stroke-width="1.5"/><line x1="15" y1="3" x2="15" y2="21" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+        </div>
+    </div>
+    <!-- Grid -->
+    <div class="catalog-grid vg1" id="nigGrid">
+        <!-- Dynamic content -->
+    </div>
+</section>
+
+<!-- ===== CLOTHING SECTION (Shirts, etc) ===== -->
+<section id="clothingSection" class="catalog-section" style="display:none">
+    <!-- Row 1: Back + Title (center) + Actions -->
+    <div class="cat-row1" id="clothingRow1">
+        <button class="cat-back" id="clothingBack"><svg width="7" height="12" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,1 1,6 7,11"/></svg></button>
+        <h2 class="cat-title" id="clothingTitle">SHIRTS</h2>
+        <div class="cat-row1-right">
+            <button class="cat-filter-btn" id="filtersToggle">FILTER</button>
+            <button class="cat-view-toggle" id="clothingViewToggle" data-view="vg1" aria-label="Toggle grid view">
+                <svg class="vg-icon vg1-icon active" viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="3" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg class="vg-icon vg2-icon" viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="3" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg class="vg-icon vg3-icon" viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="3" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="9" y1="3" x2="9" y2="21" stroke="currentColor" stroke-width="1.5"/><line x1="15" y1="3" x2="15" y2="21" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+        </div>
+    </div>
+    <!-- Row 2: Subtitle tabs -->
+    <div class="cat-row2" id="clothingRow2">
+        <div class="subtitle-scroll" id="clothingSubtitleScroll"></div>
+    </div>
+    <!-- Grid -->
+    <div class="catalog-grid vg1" id="clothingGrid">
+        <!-- Dynamic content -->
+    </div>
+</section>
+
+<!-- ===== COLLECTION GRID SECTION ===== -->
+<section id="collectionGridSection" class="catalog-section" style="display:none">
+    <!-- Row 1: Back + Title (center) + Actions -->
+    <div class="cat-row1" id="cgRow1">
+        <button class="cat-back" id="cgBack"><svg width="7" height="12" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,1 1,6 7,11"/></svg></button>
+        <h2 class="cat-title" id="cgTitle">OFFICE ELEGANCE</h2>
+        <div class="cat-row1-right">
+            <button class="cat-view-toggle" id="cgViewToggle" data-view="vg1" aria-label="Toggle grid view">
+                <svg class="vg-icon vg1-icon active" viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="3" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg class="vg-icon vg2-icon" viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="3" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg class="vg-icon vg3-icon" viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="3" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="9" y1="3" x2="9" y2="21" stroke="currentColor" stroke-width="1.5"/><line x1="15" y1="3" x2="15" y2="21" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+        </div>
+    </div>
+    <!-- Grid -->
+    <div class="catalog-grid vg1" id="cgGrid">
+        <!-- Dynamic content -->
+    </div>
+</section>
+
+<!-- ===== PRODUCT DETAIL PAGE ===== -->
+<div id="productDetail" class="pdp-overlay" style="display:none">
+    <!-- PDP Fixed Transparent Header -->
+    <div class="pdp-header-bar" id="pdpHeaderBar">
+        <div class="pdp-header-inner">
+            <div class="pdp-header-left">
+            <button class="pdp-close-x" id="pdpCloseX" aria-label="Close">
+                <svg width="22" height="22" stroke="currentColor" stroke-width="1.5"><line x1="4" y1="4" x2="18" y2="18"/><line x1="18" y1="4" x2="4" y2="18"/></svg>
+            </button>
+            <a href="#home" class="pdp-header-brand" onclick="closePDP();return false;">
+                <img src="assets/escalier-header-mono.png" alt="ESCALIER" class="pdp-logo-image">
+                <span class="pdp-brand-text">ESCALIER</span>
+            </a>
+        </div>
+        <div class="pdp-header-right">
+
+            <!-- Basket icon: qty inside bag -->
+            <button class="pdp-cart-btn" id="pdpCartBtn" aria-label="Bag">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count" id="pdpCartCount"></span>
+            </button>
+        </div>
+        </div>
+    </div>
+
+    <div class="pdp-scroll" id="pdpScroll">
+        <!-- Product Image Area - swipeable with pagination dots -->
+        <div class="pdp-image-area" id="pdpImageArea">
+            <div class="pdp-image-scroll" id="pdpImageScroll">
+                <img id="pdpMainImg" src="" alt="Product" class="pdp-main-img">
+            </div>
+            <div class="pdp-image-dots" id="pdpImageDots"></div>
+            <!-- Wishlist icon bottom-left of photo -->
+            <button class="pdp-photo-wishlist" id="pdpPhotoWishlist" aria-label="Add to wishlist">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <span class="pdp-photo-wishlist-toast" id="pdpPhotoWishlistToast">You add this item to wish list</span>
+            </button>
+        </div>
+
+        <!-- Bottom Panel: Info + CTA Only -->
+        <div class="pdp-bottom-panel">
+            <!-- Product Info -->
+            <div class="pdp-info">
+                <span class="pdp-new-tag" id="pdpNewTag">NEW</span>
+                <p class="pdp-desc" id="pdpDesc"></p>
+                <div class="pdp-color-row">
+                    <span class="pdp-color-name-text" id="pdpActiveColorName"></span>
+                    <div class="pdp-color-icons-row" id="pdpColorIconsRow"></div>
+                    <button class="pdp-more-colors-toggle" id="pdpMoreColors">+<span id="moreColorsCount">2</span></button>
+                </div>
+                <div class="pdp-actions">
+                    <button class="pdp-cta-primary" id="pdpSelectSizeBtn">ADD</button>
+                    <button class="pdp-cta-secondary" id="pdpViewLookBtn">LOOK</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accordions -->
+        <div class="pdp-accordions" id="pdpAccordions"></div>
+
+        <!-- Complete Your Look -->
+        <div class="pdp-complete-look" id="pdpCompleteLook" style="display:none">
+            <h3 class="pdp-section-title">COMPLETE YOUR LOOK</h3>
+            <div class="pdp-look-grid" id="pdpLookGrid"></div>
+        </div>
+
+        <!-- You May Also Like -->
+        <div class="pdp-you-may-like" id="pdpYouMayLike" style="display:none">
+            <h3 class="pdp-section-title">YOU MAY BE ALSO LIKE</h3>
+            <div class="pdp-al-grid" id="pdpAlGrid"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== COLOR POPUP (35% from bottom) ===== -->
+<div id="colorPopup" class="popup-overlay" style="display:none">
+    <div class="popup-backdrop" id="colorPopupBackdrop"></div>
+    <div class="popup-sheet color-sheet">
+        <div class="color-swipe-container" id="colorSwipeContainer"></div>
+    </div>
+</div>
+
+<!-- ===== SELECT SIZE POPUP (55% from bottom) ===== -->
+<div id="sizePopup" class="popup-overlay" style="display:none">
+    <div class="popup-backdrop" id="sizePopupBackdrop"></div>
+    <div class="popup-sheet size-sheet">
+        <h3 class="size-popup-title">SELECT SIZE</h3>
+        <p class="size-model-info" id="sizeModelInfo">Model: 170 cm and Size S</p>
+        <div class="size-options" id="sizeOptions"></div>
+        <button class="size-measurement-btn" id="sizeMeasurementBtn">Measurement</button>
+    </div>
+</div>
+
+<!-- ===== MEASUREMENT PAGE (fullscreen) ===== -->
+<div id="measurementPage" class="measurement-page" style="display:none">
+    <div class="measurement-header">
+        <button class="measurement-close" id="measurementClose">Close</button>
+    </div>
+    <h2 class="measurement-title">SELECT SIZE</h2>
+    <div class="measurement-size-row" id="measurementSizeRow"></div>
+    <div class="measurement-section-header">
+        <span>MEASUREMENT</span>
+        <span class="measurement-unit">cm</span>
+    </div>
+    <div class="measurement-table" id="measurementTable"></div>
+</div>
+
+<!-- ===== ADDED TO BASKET POPUP (2/3 screen) ===== -->
+<div id="basketPopup" class="popup-overlay" style="display:none">
+    <div class="popup-backdrop" id="basketPopupBackdrop"></div>
+    <div class="popup-sheet basket-sheet">
+        <div class="basket-popup-header">
+            <span>ADDED TO BASKET</span>
+            <button class="popup-view-btn" id="basketViewBtn">VIEW</button>
+        </div>
+        <div class="basket-popup-product" id="basketPopupProduct"></div>
+        <div class="basket-popup-recommended">
+            <div class="basket-popup-rec-header">
+                <span>You may be also like:</span>
+                <button id="basketLinkBtn">Basket</button>
+            </div>
+            <div class="basket-rec-scroll" id="basketRecScroll"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== BASKET / CART PAGE ===== -->
+<section id="basketPage" class="basket-page" style="display:none">
+
+    <!-- Header basket: exact PDP header + title + 2 CTA tab buttons -->
+    <div class="basket-header-bar" id="basketHeaderBar">
+
+        <!-- Row 1: X + logo (exact PDP measurements) -->
+        <div class="bh-row1">
+            <button class="bh-close-x" id="basketPageClose" aria-label="Close">
+                <svg width="22" height="22" stroke="currentColor" stroke-width="1.5"><line x1="4" y1="4" x2="18" y2="18"/><line x1="18" y1="4" x2="4" y2="18"/></svg>
+            </button>
+            <a class="bh-brand" href="#" onclick="return false;">
+                <img class="bh-logo" src="assets/escalier-header-mono.png" alt="ESCALIER">
+                <span class="bh-brand-text">ESCALIER</span>
+            </a>
+        </div>
+
+        <!-- Row 2: Title BASKET / WISH LIST, 4mm below header -->
+        <div class="bh-title-row">
+            <span class="bh-title" id="bhTitle">BASKET</span>
+        </div>
+
+        <!-- Row 3: 2 equal CTA capsule buttons side by side, each col centred -->
+        <div class="bh-cta-row">
+            <button class="bh-cta-btn active" id="bh-tab-basket">
+                <span class="bh-cta-inner">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="bh-cta-qty" id="basketPageCount"></span>
+                </span>
+            </button>
+            <button class="bh-cta-btn" id="bh-tab-wish">
+                <span class="bh-cta-inner">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    <span class="bh-cta-qty" id="favPageCount"></span>
+                </span>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Scrollable content: starts 4mm below icon tabs -->
+    <div class="basket-page-content" id="basketPageContent">
+        <div class="basket-page-items" id="basketPageItems"></div>
+    </div>
+
+    <!-- Footer: total line + CTA -->
+    <div class="basket-page-footer" id="basketPageFooter">
+        <div class="basket-total-row">
+            <span class="basket-total-label">Total :</span>
+            <span class="basket-total-amount" id="basketTotal">Rp 0</span>
+        </div>
+        <button class="basket-process-btn" id="basketProcessBtn">Process Order</button>
+    </div>
+</section>
+
+<!-- ===== FILTERS POPUP ===== -->
+<div id="filtersPopup" class="popup-overlay" style="display:none">
+    <div class="popup-sheet filters-sheet">
+        <div class="popup-sheet-header">
+            <button class="popup-close" id="filtersPopupClose"><svg width="18" height="18" stroke="currentColor" stroke-width="1.5"><line x1="4" y1="4" x2="14" y2="14"/><line x1="14" y1="4" x2="4" y2="14"/></svg></button>
+            <h3 class="filter-popup-title">FILTER</h3>
+        </div>
+        <div class="filters-body">
+            <div class="filter-group">
+                <h4>Sort</h4>
+                <div class="filter-capsule-scroll">
+                    <button class="filter-capsule active" data-sort="new">New</button>
+                    <button class="filter-capsule" data-sort="price-low">Lowest to Highest Price</button>
+                    <button class="filter-capsule" data-sort="price-high">Highest to Lowest</button>
+                </div>
+            </div>
+            <div class="filter-group">
+                <h4>Colour</h4>
+                <div class="filter-color-scroll">
+                    <button class="filter-color-btn" data-color="green" style="--c:#4CAF50"><span></span></button>
+                    <button class="filter-color-btn" data-color="yellow" style="--c:#FFEB3B"><span></span></button>
+                    <button class="filter-color-btn" data-color="red" style="--c:#F44336"><span></span></button>
+                    <button class="filter-color-btn" data-color="blue" style="--c:#2196F3"><span></span></button>
+                    <button class="filter-color-btn" data-color="brown" style="--c:#795548"><span></span></button>
+                    <button class="filter-color-btn" data-color="purple" style="--c:#9C27B0"><span></span></button>
+                    <button class="filter-color-btn" data-color="black" style="--c:#000000"><span></span></button>
+                    <button class="filter-color-btn" data-color="white" style="--c:#FFFFFF;border:1px solid #ddd"><span></span></button>
+                </div>
+            </div>
+            <div class="filter-group">
+                <h4>Size</h4>
+                <div class="filter-size-scroll">
+                    <button class="filter-size-btn" data-size="XS">XS</button>
+                    <button class="filter-size-btn" data-size="S">S</button>
+                    <button class="filter-size-btn" data-size="M">M</button>
+                    <button class="filter-size-btn" data-size="L">L</button>
+                    <button class="filter-size-btn" data-size="XL">XL</button>
+                    <button class="filter-size-btn" data-size="2XL">2XL</button>
+                    <button class="filter-size-btn" data-size="3XL">3XL</button>
+                </div>
+            </div>
+            <div class="filter-group">
+                <h4>Price</h4>
+                <div class="price-range-slider">
+                    <div class="price-range-track">
+                        <input type="range" id="priceRangeMin" min="59900" max="999999" value="59900" step="1000">
+                        <input type="range" id="priceRangeMax" min="59900" max="999999" value="999999" step="1000">
+                    </div>
+                    <div class="price-range-values">
+                        <span id="priceRangeMinVal">59.900 Rp</span>
+                        <span id="priceRangeMaxVal">999.999 Rp</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="filters-footer">
+            <button class="view-results-btn" id="viewResultsBtn">View Results</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== THE EXPERIENCE (formerly About) ===== -->
+<section id="about" class="about-section" data-header-theme="dark">
+
+    <!-- ===== SCREEN 1: THE EXPERIENCE HERO ===== -->
+    <div class="exp-screen" id="expScreen1">
+        <img src="assets/about_hero.PNG?v=4" alt="The Experience" class="exp-bg-img">
+        <div class="exp-overlay"></div>
+
+        <!-- Title + subtitle: left, bottom 57% -->
+        <div class="exp-hero-caption">
+            <h2 class="exp-hero-title">THE<br>EXPERIENCE</h2>
+            <div class="exp-hero-sep"></div>
+            <p class="exp-hero-sub">Step into the ESCALIER experience,<br>where atmosphere, design, and<br>everyday elegance come together<br>in quiet harmony.</p>
+        </div>
+
+        <!-- SCROLL TO BEGIN: centred bottom -->
+        <div class="exp-hero-scroll">
+            <span class="exp-hero-scroll-text">SCROLL TO BEGIN</span>
+            <span class="exp-hero-scroll-line"></span>
+        </div>
+    </div>
+
+    <!-- ===== SCREEN 1B: OUR PHILOSOPHY — new page after hero ===== -->
+    <div class="exp-screen exp-screen-philosophy" id="expScreen1b">
+        <!-- Full immersive background -->
+        <img src="assets/philosophy-escalier-1.PNG" alt="Our Philosophy" class="phil-bg-img">
+        <!-- Gradient overlay: bottom half darker for text -->
+        <div class="phil-overlay"></div>
+        <!-- Text block: left, positioned at ~55% from top -->
+        <div class="phil-content">
+            <p class="phil-label">OUR PHILOSOPHY</p>
+            <h2 class="phil-title">Quiet<br>sophistication.<br>Enduring<br>identity.</h2>
+            <p class="phil-body">ESCALIER is a Korean minimalist brand rooted in contemporary youth culture. We create timeless pieces with thoughtful design, warm materiality, and immersive experiences for everyday life.</p>
+        </div>
+    </div>
+
+    <!-- ===== SCREEN 1C: PHILOSOPHY 2 ===== -->
+    <div class="exp-screen exp-screen-phil2" id="expScreen1c">
+        <img src="assets/philosophy-escalier-2.PNG" alt="Our Crest" class="phil2-bg-img">
+        <div class="phil2-overlay"></div>
+
+        <!-- OUR CREST: 44% from top -->
+        <div class="phil2-block phil2-block-a">
+            <p class="phil2-label">OUR CREST</p>
+            <h2 class="phil2-title">Timeless values.</h2>
+            <p class="phil2-body">The ESCALIER crest embodies elegance,<br>balance, and enduring identity. Rooted<br>in heritage and crafted with intention,<br>it stands as a symbol of refined<br>distinction that transcends time.</p>
+        </div>
+
+        <!-- OUR NAME: 64% from top -->
+        <div class="phil2-block phil2-block-b">
+            <p class="phil2-label">OUR NAME</p>
+            <h2 class="phil2-title">A journey of<br>self-expression.</h2>
+            <p class="phil2-body">Named after the French word for "staircase,"<br>ESCALIER reflects growth, intention, and becoming.</p>
+            <p class="phil2-body">Each step represents the courage to rise,<br>the freedom to define oneself, and the beauty<br>of an evolving journey.</p>
+        </div>
+    </div>
+
+    <!-- ===== SCREEN 2: THE BRAND ===== -->
+    <div class="exp-screen exp-screen-brand" id="expScreen2">
+
+        <!-- Background photo -->
+        <img src="assets/brand-escalier.PNG" alt="Our Philosophy" class="brand-bg-img">
+        <!-- Dark overlay — heavier bottom-left for text readability -->
+        <div class="brand-dark-overlay"></div>
+
+        <!-- Text block: pojok kiri bawah -->
+        <div class="brand-content">
+            <h2 class="brand-main-title">A symbol of<br>timeless values.</h2>
+            <p class="brand-body">The ESCALIER crest embodies elegance, balance, and enduring identity. It is a promise of refined design that stays with you, for a long time.</p>
+        </div>
+
+    </div>
+
+    <!-- ===== SCREEN 2B: CONNECTOR PHILOSOPHY → DNA ===== -->
+    <div class="exp-screen sc4" id="expScreen2b">
+
+        <!-- Background: MP4 video autoplay (works on https://) -->
+        <video class="conn-bg-full" id="connBgVideo1" autoplay muted loop playsinline webkit-playsinline preload="auto">
+            <source src="assets/connector-ph-dna-1.MP4" type="video/mp4">
+        </video>
+        <div class="conn-bg-grad"></div>
+
+        <!-- TOP text -->
+        <div class="conn-hero">
+            <p class="conn-three">THREE INSPIRATIONS</p>
+            <div class="conn-vline"></div>
+            <h2 class="conn-title">ONE<br>IDENTITY</h2>
+            <div class="conn-orn-row">
+                <span class="conn-orn-line"></span>
+                <span class="conn-orn-icon">❧</span>
+                <span class="conn-orn-line"></span>
+            </div>
+            <p class="conn-body">Rooted in culture,<br>refined by modernity,<br>and made for everyday life.<br>This is the essence of ESCALIER.</p>
+        </div>
+
+        <!-- Point 2: Discover text 2mm above cards -->
+        <p class="conn-discover">Discover the style DNA that defines ESCALIER.</p>
+
+        <!-- Point 1: Cards - pano1 style seamless auto scroll -->
+        <div class="conn-cards-bottom">
+            <div class="conn-cards-track" id="connCardsTrack">
+                <!-- Original 3 cards -->
+                <div class="conn-dna-card" data-dna="0">
+                    <img src="assets/royal_korean.png?v=4" class="conn-dna-img">
+                    <div class="sc4-card-body">
+                        <span class="sc4-card-num">01</span>
+                        <p class="sc4-card-name">ROYAL KOREAN CHIC</p>
+                    </div>
+                </div>
+                <div class="conn-dna-card" data-dna="1">
+                    <img src="assets/modern_global.png?v=4" class="conn-dna-img">
+                    <div class="sc4-card-body">
+                        <span class="sc4-card-num">02</span>
+                        <p class="sc4-card-name">MODERN GLOBAL</p>
+                    </div>
+                </div>
+                <div class="conn-dna-card" data-dna="2">
+                    <img src="assets/about_effortless.png?v=4" class="conn-dna-img">
+                    <div class="sc4-card-body">
+                        <span class="sc4-card-num">03</span>
+                        <p class="sc4-card-name">EFFORTLESS LIFESTYLE</p>
+                    </div>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="conn-dna-card" data-dna="0">
+                    <img src="assets/royal_korean.png?v=4" class="conn-dna-img">
+                    <div class="sc4-card-body">
+                        <span class="sc4-card-num">01</span>
+                        <p class="sc4-card-name">ROYAL KOREAN CHIC</p>
+                    </div>
+                </div>
+                <div class="conn-dna-card" data-dna="1">
+                    <img src="assets/modern_global.png?v=4" class="conn-dna-img">
+                    <div class="sc4-card-body">
+                        <span class="sc4-card-num">02</span>
+                        <p class="sc4-card-name">MODERN GLOBAL</p>
+                    </div>
+                </div>
+                <div class="conn-dna-card" data-dna="2">
+                    <img src="assets/about_effortless.png?v=4" class="conn-dna-img">
+                    <div class="sc4-card-body">
+                        <span class="sc4-card-num">03</span>
+                        <p class="sc4-card-name">EFFORTLESS LIFESTYLE</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Play/pause button bottom right -->
+            <button class="conn-pp-btn" id="connPPBtn">
+                <svg class="conn-pause-icon" width="8" height="10" viewBox="0 0 8 10" fill="currentColor"><rect x="0" y="0" width="2.5" height="10"/><rect x="5.5" y="0" width="2.5" height="10"/></svg>
+                <svg class="conn-play-icon" width="8" height="10" viewBox="0 0 8 10" fill="currentColor" style="display:none"><polygon points="0,0 8,5 0,10"/></svg>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- ===== SCREEN 3: OUR STYLE DNA CAROUSEL ===== -->
+    <div class="exp-screen" id="expScreen3">
+
+        <!-- Title block: Playfair italic large + subtitle -->
+        <div class="dna-fixed-title" id="dnaFixedTitle">
+            <h3 class="dna-title-main">Our Style DNA</h3>
+            <div class="dna-title-sep"></div>
+            <p class="dna-title-sub">THREE INSPIRATIONS. ONE IDENTITY.</p>
+        </div>
+
+        <!-- Full immersive carousel -->
+        <div class="dna-carousel-wrap" id="dnaCarouselWrap">
+            <div class="dna-carousel-track" id="dnaCarouselTrack">
+                <div class="dna-slide" data-slide="0">
+                    <img src="assets/royal_korean.png?v=4" alt="Royal Korean Chic" class="dna-slide-img">
+                    <img src="assets/royal_korean.gif" alt="" class="dna-slide-gif">
+                </div>
+                <div class="dna-slide" data-slide="1">
+                    <img src="assets/modern_global.png?v=4" alt="Modern Global" class="dna-slide-img">
+                    <img src="assets/modern_global.gif" alt="" class="dna-slide-gif">
+                </div>
+                <div class="dna-slide" data-slide="2">
+                    <img src="assets/about_effortless.png?v=4" alt="Effortless Lifestyle" class="dna-slide-img">
+                    <img src="assets/about_effortless.gif" alt="" class="dna-slide-gif">
+                </div>
+            </div>
+        </div>
+
+        <!-- Fixed bottom caption — left aligned, photo 2 style -->
+        <div class="dna-fixed-caption" id="dnaFixedCaption">
+            <p class="dna-slide-num" id="dnaSlideNum">01</p>
+            <div class="dna-cap-sep"></div>
+            <h4 class="dna-cap-title" id="dnaCapTitle">ROYAL<br>KOREAN CHIC</h4>
+            <span class="dna-cap-deco">❋</span>
+            <p class="dna-cap-desc" id="dnaCapDesc">Royal Korean Chic is the soul of ESCALIER — calm elegance, mindful design, and understated beauty that transcends seasons.</p>
+            <!-- Nav row: scroll-down left | dots | NEXT right -->
+            <div class="dna-dots-row" id="dnaDotsRow">
+                <button class="dna-prev-btn" id="dnaPrevBtn" aria-label="Scroll down">
+                    <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,1 8,9 15,1"/></svg>
+                </button>
+                <div class="dna-dots-centre">
+                    <button class="dna-dot active" data-slide="0"></button>
+                    <button class="dna-dot" data-slide="1"></button>
+                    <button class="dna-dot" data-slide="2"></button>
+                </div>
+                <!-- Play/Pause button for manual mode -->
+                <button class="dna-playpause-btn" id="dnaPlayPauseBtn" aria-label="Play/Pause">
+                    <svg class="dna-pause-icon" width="12" height="14" viewBox="0 0 12 14" fill="currentColor"><rect x="0" y="0" width="4" height="14"/><rect x="8" y="0" width="4" height="14"/></svg>
+                    <svg class="dna-play-icon" width="12" height="14" viewBox="0 0 12 14" fill="currentColor" style="display:none"><polygon points="0,0 12,7 0,14"/></svg>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ===== SCREEN 4: OUR STYLE COLLECTION ===== -->
+    <div class="exp-screen sc4" id="expScreen4">
+
+        <!-- Hero background photo -->
+        <img src="assets/women_lifestyle.png" alt="Style Collection" class="sc4-hero-img" id="sc4HeroImg">
+        <div class="sc4-hero-overlay" id="sc4HeroOverlay"></div>
+        <!-- Right-side click zone → fullscreen -->
+        <div class="sc4-hero-click-zone" id="sc4HeroClickZone"></div>
+
+        <!-- BLOCK B: Fixed top (4mm below logo crest) -->
+        <div class="sc4-block-top" id="sc4BlockTop">
+            <!-- Section label -->
+            <h3 class="sc4-main-title">Our Style Collection</h3>
+
+            <p class="sc4-intro-text">"At Escalier, we offer more than clothing.<br>We offer a moment of stillness<br>in a fast-moving world — a space where you<br>can explore, reflect, and connect."</p>
+            <div class="sc4-gender-tabs">
+                <button class="sc4-gender-btn active" id="sc4WomenBtn" data-gender="women">WOMEN</button>
+                <button class="sc4-gender-btn" id="sc4MenBtn" data-gender="men">MEN</button>
+                <!-- Play/Pause auto carousel -->
+                <button class="sc4-playpause-btn" id="sc4PlayPauseBtn" aria-label="Play/Pause">
+                    <svg class="sc4-pause-icon" width="10" height="12" viewBox="0 0 10 12" fill="currentColor"><rect x="0" y="0" width="3" height="12"/><rect x="7" y="0" width="3" height="12"/></svg>
+                    <svg class="sc4-play-icon" width="10" height="12" viewBox="0 0 10 12" fill="currentColor" style="display:none"><polygon points="0,0 10,6 0,12"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- BLOCK A: Fixed bottom (bottom of card = bottom of screen) -->
+        <div class="sc4-block-bottom" id="sc4BlockBottom">
+            <!-- 3. Style text: desc, name, title (bottom-up order) -->
+            <div class="sc4-style-block">
+                <h2 class="sc4-col-title" id="sc4ColTitle">WOMEN<br>COLLECTION</h2>
+                <div class="sc4-sep"></div>
+                <p class="sc4-style-name" id="sc4StyleName">Sophisticated Minimalism</p>
+                <p class="sc4-style-desc" id="sc4StyleDesc">Clean lines, quiet details, modern ease.</p>
+            </div>
+            <!-- 2. FOR WOMEN + separator -->
+            <div class="sc4-for-row">
+                <div class="sc4-for-sep"></div>
+            </div>
+            <!-- 1. Cards + arrows (bottom-most, batas bawah = batas bawah layar) -->
+            <div class="sc4-cards-outer">
+
+                <div class="sc4-cards-wrap">
+                    <div class="sc4-cards-track" id="sc4CardsTrack"></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== SC4 FULLSCREEN OVERLAY ===== -->
+    <div class="sc4-fullscreen" id="sc4Fullscreen">
+
+        <!-- Carousel -->
+        <div class="sc4-fs-carousel" id="sc4FsCarousel">
+            <div class="sc4-fs-track" id="sc4FsTrack">
+                <!-- slides inserted by JS -->
+            </div>
+        </div>
+
+        <!-- Gradient overlay -->
+        <div class="sc4-fs-overlay"></div>
+
+        <!-- Dots: centre bottom -->
+        <div class="sc4-fs-dots-wrap">
+            <div class="sc4-fs-dots" id="sc4FsDots"></div>
+            <button class="sc4-fs-pp-btn" id="sc4FsPPBtn">
+                <svg class="sc4-fs-pause-icon" width="10" height="12" viewBox="0 0 10 12" fill="currentColor"><rect x="0" y="0" width="3" height="12"/><rect x="7" y="0" width="3" height="12"/></svg>
+                <svg class="sc4-fs-play-icon" width="10" height="12" viewBox="0 0 10 12" fill="currentColor" style="display:none"><polygon points="0,0 10,6 0,12"/></svg>
+            </button>
+        </div>
+
+        <!-- Caption bottom left -->
+        <div class="sc4-fs-caption">
+            <p class="sc4-fs-label" id="sc4FsLabel">OUR WOMEN<br>STYLE COLLECTION</p>
+            <div class="sc4-fs-sep"></div>
+            <h2 class="sc4-fs-title" id="sc4FsTitle">Sophisticated Minimalism</h2>
+            <p class="sc4-fs-desc" id="sc4FsDesc">Refined silhouettes for calm everyday living.</p>
+        </div>
+
+    </div>
+
+    <!-- X button OUTSIDE fullscreen div: position:fixed, bypasses all stacking context -->
+    <!-- Only visible when fullscreen is open (controlled by JS class) -->
+    <button class="sc4-fs-close" id="sc4FsClose">X</button>
+
+    <!-- ===== SCREEN 5: STORE EXPERIENCE ===== -->
+    <div class="exp-screen exp-screen-store" id="expScreen5">
+        <div class="store-exp-hero" id="storeExpHero5">
+            <div class="store-exp-caption-top">
+                <h2 class="store-exp-title">Where Shopping<br>Becomes an Experience</h2>
+            </div>
+            <div class="store-exp-carousel" id="storeExpCarousel5">
+                <div class="store-exp-slide active" data-slide="0" data-caption-height="170">
+                    <img src="assets/kpop_atmosphere.png" alt="K-pop Atmosphere">
+                    <div class="store-exp-caption-bottom">
+                        <i class="fas fa-music"></i>
+                        <h3>K-pop Atmosphere</h3>
+                        <p>Immerse yourself in the latest Korean pop hits</p>
+                    </div>
+                </div>
+                <div class="store-exp-slide" data-slide="1" data-caption-height="188">
+                    <img src="assets/esc_spacious.png" alt="Convenient Premium Store">
+                    <div class="store-exp-caption-bottom">
+                        <i class="fas fa-couch"></i>
+                        <h3>Convenient Premium Store</h3>
+                        <p>Step into our spacious, thoughtfully designed store</p>
+                    </div>
+                </div>
+                <div class="store-exp-slide" data-slide="2" data-caption-height="188">
+                    <img src="assets/sosmed_zone.png" alt="Content Creation Zone">
+                    <div class="store-exp-caption-bottom">
+                        <i class="fas fa-camera"></i>
+                        <h3>Content Creation Zone</h3>
+                        <p>Capture your style in our dedicated photo corner</p>
+                    </div>
+                </div>
+            </div>
+            <div class="store-exp-nav" id="storeExpNav5">
+                <button class="exp-screen5-scroll-down" id="expScreen5ScrollDown" aria-label="Scroll down">
+                    <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,1 8,9 15,1"/></svg>
+                </button>
+                <div class="exp-screen5-dots-right">
+                    <button class="store-exp-dot active" data-slide="0"></button>
+                    <button class="store-exp-dot" data-slide="1"></button>
+                    <button class="store-exp-dot" data-slide="2"></button>
+                    <button class="store-exp-play" id="storeExpPlayBtn5"><i class="fas fa-pause"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SCREEN 6: OUR BOUTIQUE STORE ===== -->
+    <div class="exp-screen exp-screen-boutique" id="expScreen6">
+
+        <!-- A. Dark-grey header bar: 4mm below logo crest -->
+        <div class="b6-header-bar">
+            <h2 class="b6-title">Our Boutique Store</h2>
+            <p class="b6-subtitle">ESCALIER SEASON CITY</p>
+        </div>
+
+        <!-- B. Seamless horizontal auto-scroll photo strip -->
+        <div class="b6-photo-strip" id="b6PhotoStrip">
+            <div class="b6-strip-track" id="b6StripTrack">
+                <img src="assets/boutique_interior_1.jpg" alt="Boutique 1" class="b6-strip-img">
+                <img src="assets/boutique_interior_2.jpg" alt="Boutique 2" class="b6-strip-img">
+                <img src="assets/boutique_interior_3.jpg" alt="Boutique 3" class="b6-strip-img">
+                <!-- duplicates for seamless loop -->
+                <img src="assets/boutique_interior_1.jpg" alt="Boutique 1" class="b6-strip-img">
+                <img src="assets/boutique_interior_2.jpg" alt="Boutique 2" class="b6-strip-img">
+                <img src="assets/boutique_interior_3.jpg" alt="Boutique 3" class="b6-strip-img">
+            </div>
+            <!-- Play btn: pojok kanan, no circle -->
+            <button class="b6-play-btn" id="b6PlayBtn" aria-label="Play/Pause">
+                <svg width="10" height="12" viewBox="0 0 10 12" fill="currentColor"><polygon points="0,0 10,6 0,12"/></svg>
+            </button>
+        </div>
+
+        <!-- C. Text paragraph + CTA fixed at bottom -->
+        <div class="b6-bottom-block">
+            <div class="b6-text">
+                <p>Escalier's Boutique Store is more than a retail space — it is a carefully designed environment where fashion meets atmosphere.</p>
+                <p>Within this expansive, light-filled setting, we present a curated collection for Women and Men, defined by clean lines, soft silhouettes, and premium craftsmanship.</p>
+                <p>Here, shopping becomes an experience — calm, immersive, and thoughtfully paced.</p>
+            </div>
+            <button class="b6-cta-btn" id="b6CtaBtn">EXPLORE STORE TOUR</button>
+        </div>
+
+        <!-- D. Scroll-down btn: pojok kiri bawah -->
+        <button class="b6-scroll-down" id="b6ScrollDown" aria-label="Scroll down">
+            <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,1 8,9 15,1"/></svg>
+        </button>
+
+    </div>
+
+    <!-- ===== SCREEN 7: STORE TOUR ===== -->
+    <div class="exp-screen exp-screen-tour" id="expScreen7">
+
+        <!-- A. Dark-grey title bar -->
+        <div class="t7-header-bar">
+            <h2 class="t7-title">STORE TOUR</h2>
+            <p class="t7-subtitle">Step inside and explore the atmosphere behind<br>ESCALIER.</p>
+        </div>
+
+        <!-- B. Two videos equal height, flexible total -->
+        <div class="t7-videos-wrap">
+            <!-- Women -->
+            <div class="t7-video-block">
+                <div class="t7-vid-label">WOMEN SECTION</div>
+                <div class="t7-video-frame">
+                    <video id="womenVideo7" src="assets/women.mp4" poster="assets/women_poster.jpg"
+                        playsinline webkit-playsinline muted autoplay loop preload="auto"
+                        disablePictureInPicture controlsList="nofullscreen nodownload noremoteplayback"></video>
+                    <div class="t7-tap-layer" id="womenTapLayer7">
+                        <button class="t7-play-btn" id="womenPlayBtn7">
+                            <i class="fas fa-pause"></i>
+                        </button>
+                    </div>
+                    <button class="t7-mute-btn" id="womenMuteBtn7">
+                        <i class="fas fa-volume-mute"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Men -->
+            <div class="t7-video-block">
+                <div class="t7-vid-label">MEN SECTION</div>
+                <div class="t7-video-frame">
+                    <video id="menVideo7" src="assets/men.mp4" poster="assets/men_poster.jpg"
+                        playsinline webkit-playsinline muted autoplay loop preload="auto"
+                        disablePictureInPicture controlsList="nofullscreen nodownload noremoteplayback"></video>
+                    <div class="t7-tap-layer" id="menTapLayer7">
+                        <button class="t7-play-btn" id="menPlayBtn7">
+                            <i class="fas fa-pause"></i>
+                        </button>
+                    </div>
+                    <button class="t7-mute-btn" id="menMuteBtn7">
+                        <i class="fas fa-volume-mute"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll-down btn: pojok kiri bawah -->
+        <button class="t7-scroll-down" id="t7ScrollDown" aria-label="Scroll down">
+            <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,1 8,9 15,1"/></svg>
+        </button>
+
+    </div>
+
+    <!-- ===== SCREEN 8: LOCATION ===== -->
+    <div class="exp-screen exp-screen-location" id="expScreen8">
+        <!-- Pano 1: horizontal auto-scroll -->
+        <div class="pano1-immersive exp-pano" id="expPano1Container">
+            <div class="pano1-scroll-seamless" id="expPano1Scroll">
+                <img src="assets/store_panorama.jpg" alt="Escalier Store" draggable="false">
+                <img src="assets/store_panorama.jpg" alt="Escalier Store" draggable="false">
+                <img src="assets/store_panorama.jpg" alt="Escalier Store" draggable="false">
+            </div>
+        </div>
+        <!-- Pano 2: zoomable -->
+        <div class="exp-pano2-section">
+            <div class="pano2-viewport" id="expPano2Viewport">
+                <div class="pano2-inner" id="expPano2Inner">
+                    <img src="assets/store_panorama.jpg" alt="Store Detail" id="expPano2Img" draggable="false">
+                </div>
+            </div>
+            <div class="pano2-controls">
+                <button class="pano2-zoom-btn" id="expZoomOutBtn"><i class="fas fa-minus"></i></button>
+                <span class="pano2-zoom-level" id="expZoomLevel">100%</span>
+                <button class="pano2-zoom-btn" id="expZoomInBtn"><i class="fas fa-plus"></i></button>
+                <button class="pano2-zoom-btn reset" id="expZoomResetBtn"><i class="fas fa-compress-arrows-alt"></i></button>
+            </div>
+        </div>
+        <!-- Location info -->
+        <div class="exp-location-overlay">
+            <div class="location-title-bar">
+                <h2 class="exp-location-title">VISIT OUR FLAGSHIP STORE</h2>
+            </div>
+            <div class="location-details-row">
+                <div class="location-address">
+                    <h3><i class="fas fa-store"></i> ESCALIER Season City</h3>
+                    <p><i class="fas fa-location-dot"></i> UG Floor, West Jakarta</p>
+                    <p><i class="fas fa-clock"></i> Open Daily: 10:00 – 22:00</p>
+                    <p><i class="fas fa-phone"></i> 0816-580-999</p>
+                </div>
+                <a href="https://maps.app.goo.gl/ho1Ver3vChgLw93h9?g_st=iw" target="_blank" rel="noopener noreferrer" class="location-maps">
+                    <div class="maps-header">
+                        <i class="fas fa-map-pin"></i>
+                        <span>ESCALIER · West Jakarta</span>
+                    </div>
+                    <div class="maps-body">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Open in Google Maps</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- ===== LOCATION - IMMERSIVE FULLSCREEN ===== -->
+<section id="location" class="location-immersive" data-header-theme="light">
+
+    <!-- PANORAMA 1: FULL SCREEN AUTO-SCROLL -->
+    <div class="pano1-immersive" id="pano1Container">
+        <div class="pano1-scroll-seamless" id="pano1Scroll">
+            <img src="assets/store_panorama.jpg" alt="Escalier Store" draggable="false">
+            <img src="assets/store_panorama.jpg" alt="Escalier Store" draggable="false">
+            <img src="assets/store_panorama.jpg" alt="Escalier Store" draggable="false">
+        </div>
+    </div>
+
+    <!-- PANORAMA 2: ZOOMABLE -->
+    <div class="pano2-section">
+        <div class="pano2-viewport" id="pano2Viewport">
+            <div class="pano2-inner" id="pano2Inner">
+                <img src="assets/store_panorama.jpg" alt="Store Detail" id="pano2Img" draggable="false">
+            </div>
+        </div>
+        <div class="pano2-controls">
+            <button class="pano2-zoom-btn" id="zoomOutBtn"><i class="fas fa-minus"></i></button>
+            <span class="pano2-zoom-level" id="zoomLevel">100%</span>
+            <button class="pano2-zoom-btn" id="zoomInBtn"><i class="fas fa-plus"></i></button>
+            <button class="pano2-zoom-btn reset" id="zoomResetBtn"><i class="fas fa-compress-arrows-alt"></i></button>
+        </div>
+    </div>
+
+    <!-- TITLE -->
+    <div class="location-title-bar">
+        <h2>Visit Our Flagship Store</h2>
+    </div>
+
+    <!-- ADDRESS + MAPS SIDE BY SIDE -->
+    <div class="location-details-row">
+        <div class="location-address">
+            <h3><i class="fas fa-store"></i> ESCALIER Season City</h3>
+            <p><i class="fas fa-location-dot"></i> UG Floor, West Jakarta</p>
+            <p><i class="fas fa-clock"></i> Open Daily: 10:00 – 22:00</p>
+            <p><i class="fas fa-phone"></i> 0816-580-999</p>
+        </div>
+        <a href="https://maps.app.goo.gl/ho1Ver3vChgLw93h9?g_st=iw" target="_blank" rel="noopener noreferrer" class="location-maps">
+            <div class="maps-header">
+                <i class="fas fa-map-pin"></i>
+                <span>ESCALIER · West Jakarta</span>
+            </div>
+            <div class="maps-body">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Open in Google Maps</span>
+            </div>
+        </a>
+    </div>
+
+</section>
+
+<!-- ===== STORE EXPERIENCE ===== -->
+<section id="experience" class="store-experience-page" style="display:none;background:#1a1a1a;">
+
+    <!-- HERO CAROUSEL - Full Immersive -->
+    <div class="store-exp-hero" id="storeExpHero">
+
+        <!-- TOP CAPTION: 2 line CENTER, di ATAS icon, 5mm gap -->
+        <div class="store-exp-caption-top">
+            <h2 class="store-exp-title">Where Shopping<br>Becomes an Experience</h2>
+        </div>
+
+        <!-- Carousel: Full screen edge-to-edge -->
+        <div class="store-exp-carousel" id="storeExpCarousel">
+            <div class="store-exp-slide active" data-slide="0" data-caption-height="170">
+                <img src="assets/kpop_atmosphere.png" alt="K-pop Atmosphere">
+                <div class="store-exp-caption-bottom">
+                    <i class="fas fa-music"></i>
+                    <h3>K-pop Atmosphere</h3>
+                    <p>Immerse yourself in the latest Korean pop hits</p>
+                </div>
+            </div>
+            <div class="store-exp-slide" data-slide="1" data-caption-height="188">
+                <img src="assets/esc_spacious.png" alt="Convenient Premium Store">
+                <div class="store-exp-caption-bottom">
+                    <i class="fas fa-couch"></i>
+                    <h3>Convenient Premium Store</h3>
+                    <p>Step into our spacious, thoughtfully designed store</p>
+                </div>
+            </div>
+            <div class="store-exp-slide" data-slide="2" data-caption-height="188">
+                <img src="assets/sosmed_zone.png" alt="Content Creation Zone">
+                <div class="store-exp-caption-bottom">
+                    <i class="fas fa-camera"></i>
+                    <h3>Content Creation Zone</h3>
+                    <p>Capture your style in our dedicated photo corner</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation dots at bottom + Play/Pause toggle -->
+        <div class="store-exp-nav">
+            <button class="store-exp-dot active" data-slide="0"></button>
+            <button class="store-exp-dot" data-slide="1"></button>
+            <button class="store-exp-dot" data-slide="2"></button>
+            <button class="store-exp-play" id="storeExpPlayBtn"><i class="fas fa-pause"></i></button>
+        </div>
+    </div>
+
+        <!-- ===== OUR BOUTIQUE STORE ===== -->
+    <div class="boutique-store" id="boutiqueStore">
+        <div class="boutique-header">
+            <h2 class="boutique-title">Our Boutique Store</h2>
+            <p class="boutique-subtitle">ESCALIER SEASON CITY</p>
+        </div>
+        <div class="boutique-gallery" id="boutiqueGallery">
+            <div class="boutique-slide active" data-bslide="0">
+                <img src="assets/boutique_interior_1.jpg" alt="Women Front Interior Front">
+                <div class="boutique-caption">
+                    <h4>Women Front Interior Front</h4>
+                    <p>West Jakarta, Indonesia</p>
+                </div>
+            </div>
+            <div class="boutique-slide" data-bslide="1">
+                <img src="assets/boutique_interior_2.jpg" alt="Women Front Interior">
+                <div class="boutique-caption">
+                    <h4>Women Front Interior</h4>
+                    <p>Thoughtfully arranged for effortless discovery</p>
+                </div>
+            </div>
+            <div class="boutique-slide" data-bslide="2">
+                <img src="assets/boutique_interior_3.jpg" alt="Men Inside Interior">
+                <div class="boutique-caption">
+                    <h4>Men Inside Interior</h4>
+                    <p>Spacious suites with natural lighting</p>
+                </div>
+            </div>
+        </div>
+        <div class="boutique-nav">
+            <button class="boutique-dot active" data-bslide="0"></button>
+            <button class="boutique-dot" data-bslide="1"></button>
+            <button class="boutique-dot" data-bslide="2"></button>
+            <button class="boutique-play-btn" id="boutiquePlayBtn"><i class="fas fa-pause"></i></button>
+        </div>
+        <div class="boutique-features">
+            <div class="boutique-feature">
+                <i class="fas fa-gem"></i>
+                <span>Premium Materials</span>
+            </div>
+            <div class="boutique-feature">
+                <i class="fas fa-hand-sparkles"></i>
+                <span>Personal Styling</span>
+            </div>
+            <div class="boutique-feature">
+                <i class="fas fa-mug-hot"></i>
+                <span>Complimentary Refreshments</span>
+            </div>
+        </div>
+        <div class="boutique-text-content">
+            <p>Situated in <strong>Season City Mall</strong>, Escalier's boutique is more than a retail space — it is a carefully designed environment where fashion meets atmosphere.</p>
+            <p>Within this expansive, light-filled setting, we present a curated collection for <strong>Men and Women</strong>, defined by clean lines, soft silhouettes, and premium craftsmanship.</p>
+            <p>Here, shopping becomes an experience — calm, immersive, and thoughtfully paced.</p>
+        </div>
+        <button class="boutique-cta-btn" id="boutiqueCta">
+            <span>Explore Store Tour</span>
+            <i class="fas fa-chevron-down"></i>
+        </button>
+    </div>
+<!-- STORE TOUR - Videos (on next screen, below fold) -->
+    <div class="store-tour" id="storeTour">
+        <p class="store-tour-label">STORE TOUR</p>
+        <div class="tour-videos">
+            <div class="tour-video-card" id="womenCard">
+                <div class="tour-vid-title-bar">
+                    <span>WOMEN SECTION</span>
+                    <div class="tour-vid-actions">
+                        <button class="tour-mute-btn" id="womenMuteBtn"><i class="fas fa-volume-mute"></i></button>
+                        <button class="tour-view-toggle" id="womenViewToggle"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="tour-video-wrapper">
+                    <div class="tour-video-frame">
+                        <video id="womenVideo" src="assets/women.mp4" poster="assets/women_poster.jpg" playsinline webkit-playsinline x5-playsinline x-webkit-airplay="deny" disablePictureInPicture disableRemotePlayback controlsList="nofullscreen nodownload noremoteplayback" muted loop preload="metadata"></video>
+                        <div class="tour-tap-layer" id="womenTapLayer">
+                            <button class="tour-play-btn" id="womenPlayBtn"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tour-video-card" id="menCard">
+                <div class="tour-vid-title-bar">
+                    <span>MEN SECTION</span>
+                    <div class="tour-vid-actions">
+                        <button class="tour-mute-btn" id="menMuteBtn"><i class="fas fa-volume-mute"></i></button>
+                        <button class="tour-view-toggle" id="menViewToggle"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="tour-video-wrapper">
+                    <div class="tour-video-frame">
+                        <video id="menVideo" src="assets/men.mp4" poster="assets/men_poster.jpg" playsinline webkit-playsinline x5-playsinline x-webkit-airplay="deny" disablePictureInPicture disableRemotePlayback controlsList="nofullscreen nodownload noremoteplayback" muted loop preload="metadata"></video>
+                        <div class="tour-tap-layer" id="menTapLayer">
+                            <button class="tour-play-btn" id="menPlayBtn"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer" id="siteFooter" style="display:none">
+    <div class="footer-brand">
+        <img src="assets/escalier-logo.png" alt="ESCALIER" class="footer-logo">
+        <p class="footer-tagline">Royal Korean Chic</p>
+    </div>
+    <div class="footer-links">
+        <div class="footer-col">
+            <h5>Explore</h5>
+            <a href="#home">Home</a>
+            <a href="#" onclick="showWomenFlow(event)">Women</a>
+            <a href="#" onclick="showMenFlow(event)">Men</a>
+            <a href="#about">About</a>
+        </div>
+        <div class="footer-col">
+            <h5>Support</h5>
+            <a href="#" onclick="showComingSoon(event)">Customer Service</a>
+            <a href="#" onclick="showComingSoon(event)">Shipping & Returns</a>
+        </div>
+        <div class="footer-col">
+            <h5>Contact</h5>
+            <p>Season City Mall, UG Floor</p>
+            <p>West Jakarta, Indonesia</p>
+            <p>WhatsApp: 0816-580-999</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>2026 ESCALIER. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- ===== JOIN NEWSLETTER (sementara dinonaktifkan) ===== -->
+<div class="newsletter-section" id="newsletterSection" style="display:none">
+    <h3>Join Our Newsletter</h3>
+    <p>Subscribe for exclusive offers and early access to new collections.</p>
+    <div class="newsletter-form">
+        <input type="email" placeholder="Enter your email" id="newsletterEmail">
+        <button id="newsletterSubmit">Subscribe</button>
+    </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div id="toast" class="toast"><span id="toastMsg"></span></div>
+
+
+<!-- ===== EXPERIENCE MODE OVERLAY (shown on hero screen, below subtitle) ===== -->
+<div id="expModeModal" class="exp-mode-modal" style="display:none">
+    <div class="exp-mode-card">
+        <button class="exp-mode-close" id="expModeCloseBtn">✕</button>
+        <!-- Intro text -->
+        <p class="exp-mode-intro">You can choose two ways to enjoy<br>THE ESCALIER Experience:</p>
+        <!-- Two capsule buttons -->
+        <div class="exp-mode-btns">
+            <button class="exp-mode-btn exp-mode-auto" id="expModeAutoBtn">
+                <svg width="11" height="13" viewBox="0 0 11 13" fill="currentColor"><polygon points="0,0 11,6.5 0,13"/></svg>
+                <span class="exp-mode-label">AUTO TOUR</span>
+            </button>
+            <button class="exp-mode-btn exp-mode-manual" id="expModeManualBtn">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6.5" cy="6.5" r="5.5"/><circle cx="6.5" cy="6.5" r="2" fill="currentColor" stroke="none"/></svg>
+                <span class="exp-mode-label">EXPLORE</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== AUTO TOUR OVERLAY — thin bar + notch controls ===== -->
+<div id="expAutoOverlay" class="exp-auto-overlay" style="display:none">
+    <!-- Ultra-thin progress bar at very top -->
+    <div class="exp-auto-progress-wrap">
+        <div class="exp-auto-progress-bar" id="expAutoProgressBar"></div>
+    </div>
+    <!-- Notch-level controls: ▶/⏸ left, label centre, ✕ right -->
+    <div class="exp-auto-notch">
+        <button class="exp-auto-notch-btn" id="expAutoPauseBtn">
+            <svg id="expAutoPauseIcon" width="10" height="12" viewBox="0 0 10 12" fill="currentColor"><rect x="0" y="0" width="3" height="12"/><rect x="7" y="0" width="3" height="12"/></svg>
+            <svg id="expAutoPlayIcon" width="10" height="12" viewBox="0 0 10 12" fill="currentColor" style="display:none"><polygon points="0,0 10,6 0,12"/></svg>
+        </button>
+        <span class="exp-auto-label" id="expAutoLabel">AUTO TOUR</span>
+        <button class="exp-auto-notch-btn" id="expAutoExitBtn">✕</button>
+    </div>
+</div>
+
+<!-- ===== EXPERIENCE COMPLETE — compact overlay, anchored above pano2 bottom ===== -->
+<div id="expCompletePanel" class="exp-complete-panel" style="display:none">
+    <!-- Scrollable content inside -->
+    <div class="exp-complete-inner" id="expCompleteInner">
+        <p class="exp-complete-eyebrow">THE ESCALIER EXPERIENCE</p>
+        <h2 class="exp-complete-title">Your journey<br>is complete.</h2>
+        <div class="exp-complete-sep"></div>
+        <p class="exp-complete-body">We invite you to visit us in person and<br>experience the elegance of ESCALIER — a<br>space, a collection, and a service crafted<br>for your most special moments.</p>
+        <div class="exp-complete-btns">
+            <button class="exp-complete-btn exp-complete-btn-visit" id="expCompleteStayBtn">VISIT US AT OUR BOUTIQUE</button>
+            <button class="exp-complete-btn exp-complete-btn-home" id="expCompleteHomeBtn">BACK TO HOME</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js?v=4"></script>
+
+<!-- ===== ZOOM FULLSCREEN OVERLAY ===== -->
+<div id="pdpZoomOverlay" class="pdp-zoom-overlay" style="display:none">
+    <div class="pdp-zoom-header" id="pdpZoomHeader">
+        <div class="pdp-zoom-header-left">
+            <button class="pdp-zoom-close" id="pdpZoomClose" aria-label="Close zoom">
+                <svg width="22" height="22" stroke="currentColor" stroke-width="1.5"><line x1="4" y1="4" x2="18" y2="18"/><line x1="18" y1="4" x2="4" y2="18"/></svg>
+            </button>
+            <div class="pdp-zoom-brand-wrap">
+                <img src="assets/escalier-header-mono.png" alt="ESCALIER" class="pdp-zoom-logo">
+                <span class="pdp-zoom-brand" style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;letter-spacing:0.08em;">ESCALIER</span>
+            </div>
+        </div>
+        <div class="pdp-zoom-header-right">
+            <!-- Zoom controls removed — gesture zoom only -->
+        </div>
+    </div>
+    <div class="pdp-zoom-scroll" id="pdpZoomScroll"></div>
+    <div class="pdp-zoom-footer">
+        <div class="pdp-zoom-dots" id="pdpZoomDots"></div>
+        <div class="pdp-zoom-label" id="pdpZoomLabel"></div>
+    </div>
+</div>
+
+
+<!-- ===== WISHLIST CONFIRM POPUP ===== -->
+<div id="wishlistConfirmPopup" style="display:none;position:fixed;inset:0;z-index:50000;display:none;align-items:flex-end;">
+    <div class="wl-popup-backdrop" id="wishlistConfirmBackdrop" style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div>
+    <div class="wl-popup-sheet" style="position:relative;width:100%;background:#fff;border-radius:16px 16px 0 0;padding:24px 20px 32px;z-index:1;">
+        <p class="wl-popup-text" id="wishlistConfirmText" style="font-size:14px;color:#1a1a1a;text-align:center;margin-bottom:20px;line-height:1.5;">Are you sure to remove this item from your wish list?</p>
+        <div style="display:flex;gap:12px;">
+            <button id="wishlistConfirmNo" style="flex:1;height:44px;border:1px solid #1a1a1a;background:#fff;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;letter-spacing:1px;cursor:pointer;">NO</button>
+            <button id="wishlistConfirmYes" style="flex:1;height:44px;border:none;background:#1a1a1a;color:#fff;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;letter-spacing:1px;cursor:pointer;">YES</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== BASKET WISHLIST TOAST ===== -->
+<div id="basketWishlistToast" style="display:none;position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:10px 18px;border-radius:4px;font-size:12px;font-family:'Montserrat',sans-serif;z-index:40000;white-space:nowrap;pointer-events:none;">Change to Wish List</div>
+
+
+
+
+<!-- connScrollBtn in its own fixed container before #about -->
+<div id="connScrollWrap" style="display:none;position:fixed;bottom:0;left:0;right:0;height:60px;z-index:9999;pointer-events:none;">
+    <button id="connScrollBtn" style="pointer-events:auto;position:absolute;bottom:16px;left:50%;transform:translateX(-50%);background:transparent;border:none;color:rgba(255,255,255,0.85);padding:16px 40px;cursor:pointer;touch-action:manipulation;">
+        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1,1 8,9 15,1"/></svg>
+    </button>
+</div>
+</body>
+</html>
